@@ -1,4 +1,4 @@
-package com.example.CliningService;
+package com.example.CleaningService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

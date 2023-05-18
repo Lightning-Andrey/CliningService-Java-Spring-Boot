@@ -1,4 +1,4 @@
-package com.example.CliningService.Models;
+package com.example.CleaningService.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
