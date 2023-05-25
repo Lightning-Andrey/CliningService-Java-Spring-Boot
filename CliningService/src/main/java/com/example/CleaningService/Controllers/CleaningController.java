@@ -5,6 +5,7 @@ import com.example.CleaningService.Models.Service;
 import com.example.CleaningService.Models.User;
 import com.example.CleaningService.Repositories.CleaningRequestRepository;
 import com.example.CleaningService.Repositories.ServiceRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +49,18 @@ public class CleaningController {
         cleaningRequestRepository.save(request);
 
         return "redirect:/requestCleaning";
+    }
+
+    @GetMapping("/user-requests")
+    public String showPreviousRequests(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/authorisation";
+        } else {
+            List<CleaningRequest> userRequests = cleaningRequestRepository.findByUser(user);
+            model.addAttribute("requests", userRequests);
+            return "user-requests";
+        }
     }
 
 }

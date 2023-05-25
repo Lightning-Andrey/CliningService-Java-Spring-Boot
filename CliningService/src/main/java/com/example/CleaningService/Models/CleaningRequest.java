@@ -16,6 +16,17 @@ public class CleaningRequest {
     @ManyToOne
     @JoinColumn(name = "service_id")
     private Service service;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -24,9 +35,11 @@ public class CleaningRequest {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getDateTime() {
         return dateTime;
     }
+
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }

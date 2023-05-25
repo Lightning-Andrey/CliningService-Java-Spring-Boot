@@ -3,18 +3,7 @@
 <head>
     <title>Оставить заявку на клининг</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            border-radius: 10px;
-            background-color: white;
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <div class="container">
@@ -22,10 +11,10 @@
         <div class="col-sm-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/requestCleaning">Оставить заявку</a>
+                    <a class="nav-link active" href="/request-cleaning">Оставить заявку</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/previousRequests">Предыдущие заявки</a>
+                    <a class="nav-link" href="/user-requests">Предыдущие заявки</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Выйти</a>

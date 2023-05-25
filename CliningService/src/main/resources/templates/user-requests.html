@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Мои заказы</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/request-cleaning">Оставить заявку</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user-requests">Предыдущие заявки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Выйти</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <h1>Ваши предыдущие заявки:</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Услуга</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Дата и время</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="request : ${requests}">
+                    <td th:text="${request.service.name}"></td>
+                    <td th:text="${request.service.description}"></td>
+                    <td th:text="${request.service.price}"></td>
+                    <td th:text="${request.dateTime}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

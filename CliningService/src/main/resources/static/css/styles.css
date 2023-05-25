@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f6f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav .nav-item {
+    margin-bottom: 20px;
+}
+
+.nav .nav-link {
+    text-decoration: none;
+    color: #4a4a4a;
+    transition: color 0.3s ease;
+}
+
+.nav .nav-link.active {
+    color: #1c87c9;
+}
+
+.nav .nav-link:hover {
+    color: #1c87c9;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #4a4a4a;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4a4a4a;
+}
+
+.form-group p {
+    color: #4a4a4a;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f8f9fa;
+    color: #4a4a4a;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #1c87c9;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #155673;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #1c87c9;
+    color: #fff;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}

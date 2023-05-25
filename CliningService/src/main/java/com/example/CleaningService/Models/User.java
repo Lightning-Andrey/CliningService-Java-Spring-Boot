@@ -2,6 +2,8 @@ package com.example.CleaningService.Models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,6 +22,16 @@ public class User {
     protected String email;
     @Column(name = "role")
     protected String role;
+    @OneToMany(mappedBy = "user")
+    private List<CleaningRequest> cleaningRequests;
+
+    public List<CleaningRequest> getCleaningRequests() {
+        return cleaningRequests;
+    }
+
+    public void setCleaningRequests(List<CleaningRequest> cleaningRequests) {
+        this.cleaningRequests = cleaningRequests;
+    }
 
     public String getRole() {
         return role;
