@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование услуги</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>Редактировать услугу</h1>
+    <form action="#" th:action="@{/editService}" th:object="${service}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group">
+            <label>Название</label>
+            <input type="text" th:field="*{name}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Описание</label>
+            <input type="text" th:field="*{description}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Цена</label>
+            <input type="number" step="0.01" th:field="*{price}" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </form>
+</div>
+</body>
+</html>
