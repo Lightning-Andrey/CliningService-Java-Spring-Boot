@@ -18,6 +18,16 @@ public class User {
     protected String password;
     @Column(name = "email")
     protected String email;
+    @Column(name = "role")
+    protected String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;

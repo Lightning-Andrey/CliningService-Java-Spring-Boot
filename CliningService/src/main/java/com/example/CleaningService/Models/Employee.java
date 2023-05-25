@@ -15,9 +15,6 @@ public class Employee {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "employee")
-    private List<CleaningRequest> assignedRequests;
-
     public int getId() {
         return id;
     }
@@ -34,11 +31,4 @@ public class Employee {
         this.name = name;
     }
 
-    public List<CleaningRequest> getAssignedRequests() {
-        return assignedRequests;
-    }
-
-    public void setAssignedRequests(List<CleaningRequest> assignedRequests) {
-        this.assignedRequests = assignedRequests;
-    }
 }

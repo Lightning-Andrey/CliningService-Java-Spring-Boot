@@ -13,9 +13,6 @@ public class Discount {
     @Column(name = "percentage")
     private double percentage;
 
-    @OneToOne(mappedBy = "discount")
-    private Customer customer;
-
     public int getId() {
         return id;
     }
@@ -32,11 +29,4 @@ public class Discount {
         this.percentage = percentage;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

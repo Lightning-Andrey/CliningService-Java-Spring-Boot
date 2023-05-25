@@ -27,11 +27,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/previousRequests">Предыдущие заявки</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Выйти</a>
+                </li>
             </ul>
         </div>
         <div class="col-sm-9">
             <h1>Оставить заявку на клининг</h1>
-            <form action="/requestCleaning" method="get">
+            <form action="/request-cleaning" method="get">
                 <div class="form-group">
                     <label for="serviceSelect">Выберите услугу</label>
                     <select class="form-control" id="serviceSelect" name="serviceId" onchange="this.form.submit()"

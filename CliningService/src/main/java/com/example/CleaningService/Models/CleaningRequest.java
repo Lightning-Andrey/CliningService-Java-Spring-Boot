@@ -10,14 +10,6 @@ public class CleaningRequest {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
     @Column(name = "dateTime")
     private String dateTime;
 
@@ -32,27 +24,9 @@ public class CleaningRequest {
     public void setId(int id) {
         this.id = id;
     }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public String getDateTime() {
         return dateTime;
     }
-
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }

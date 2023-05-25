@@ -1,7 +1,6 @@
 package com.example.CleaningService.Controllers;
 
 import com.example.CleaningService.Models.CleaningRequest;
-import com.example.CleaningService.Models.Customer;
 import com.example.CleaningService.Models.Service;
 import com.example.CleaningService.Models.User;
 import com.example.CleaningService.Repositories.CleaningRequestRepository;
@@ -22,7 +21,7 @@ public class CleaningController {
     @Autowired
     private CleaningRequestRepository cleaningRequestRepository;
 
-    @GetMapping("/requestCleaning")
+    @GetMapping("/request-cleaning")
     public String showRequestCleaningForm(@RequestParam(value = "serviceId", required = false) Integer serviceId, Model model) {
         List<Service> services = serviceRepository.findAll();
         model.addAttribute("services", services);
@@ -30,7 +29,7 @@ public class CleaningController {
             Service selectedService = serviceRepository.findById(serviceId).orElse(null);
             model.addAttribute("selectedService", selectedService);
         }
-        return "requestCleaning";
+        return "/request-cleaning";
     }
 
     @PostMapping("/submitRequest")
@@ -46,7 +45,6 @@ public class CleaningController {
 
         request.setService(service);
         request.setDateTime(dateTime);
-        request.setCustomer((Customer) user);
         cleaningRequestRepository.save(request);
 
         return "redirect:/requestCleaning";

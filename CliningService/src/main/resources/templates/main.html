@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body {
+      transition: background 0.2s;
+    }
+
+    </style>
 </head>
 <body>
+
+<audio id="myAudio" src="music/1.mp3" autoplay></audio>
+
+<script>
+    function getRandomColor() {
+      var hue = Math.floor(Math.random() * 360);
+      return 'hsl(' + hue + ', 100%, 50%)';
+    }
+
+    function changeBackground() {
+      document.body.style.background = getRandomColor();
+    }
+
+    setInterval(changeBackground, 200);
+
+</script>
 
 </body>
 </html>
