@@ -30,7 +30,7 @@
                             required>
                         <option disabled selected value="">Выберите услугу...</option>
                         <option th:each="service : ${services}"
-                                th:selected="${selectedService != null && service.id == selectedService.id}"
+                                th:classappend="${selectedService != null && service.id == selectedService.id} ? 'selected-service' : ''"
                                 th:text="${service.name}"
                                 th:value="${service.id}"></option>
                     </select>
@@ -48,7 +48,13 @@
                     <label for="datetimeInput">Дата и время</label>
                     <input class="form-control" id="datetimeInput" name="dateTime" required type="datetime-local">
                 </div>
-                <button class="btn btn-primary" type="submit">Оставить заявку</button>
+                <button class="btn button-best" data-action="modal" data-modal="modal" data-ym_goal="kalkul"
+                        type="submit">
+                    <svg class="flare" viewBox="0 0 1 1">
+                        <rect x="0" y="0" width="1" height="1" fill="transparent"/>
+                    </svg>
+                    Оставить заявку
+                </button>
             </form>
         </div>
     </div>

@@ -41,7 +41,7 @@ public class CleaningController {
         CleaningRequest request = new CleaningRequest();
         Service service = serviceRepository.findById(serviceId).orElse(null);
         if (service == null) {
-            return "redirect:/requestCleaning";
+            return "redirect:/request-cleaning";
         }
 
         request.setService(service);
@@ -55,7 +55,7 @@ public class CleaningController {
     public String showPreviousRequests(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/authorisation";
+            return "redirect:/login";
         } else {
             List<CleaningRequest> userRequests = cleaningRequestRepository.findByUser(user);
             model.addAttribute("requests", userRequests);

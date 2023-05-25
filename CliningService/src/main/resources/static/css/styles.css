@@ -101,3 +101,167 @@ h1 {
 .table tr:nth-child(even) {
     background-color: #f8f9fa;
 }
+
+body {
+    font-size: 16px;
+    color: #4a4a4a;
+    line-height: 1.5;
+}
+
+.container {
+    padding: 50px;
+}
+
+.nav .nav-item {
+    padding: 10px;
+}
+
+.nav .nav-link {
+    font-weight: 600;
+}
+
+.nav .nav-link.active {
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1c87c9;
+    box-shadow: 0 0 5px rgba(28, 135, 201, 0.5);
+}
+
+.btn {
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: #13445e;
+}
+
+.table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    font-weight: 700;
+}
+
+.table tr:hover {
+    background-color: #e9f2f9;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #5a9ec5;
+    color: #fff;
+}
+
+.btn {
+    font-weight: 600;
+    background-color: #3a8bbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #2a6d8d;
+}
+
+.container {
+    margin-top: 20px;
+    padding: 50px;
+}
+
+@font-face {
+    font-family: Comfortaa;
+    src: url(https://fonts.gstatic.com/s/comfortaa/v27/1Ptsg8LJRfWJmhDAuUs4SYFqL_KWxWMT.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+.button-best {
+    background: linear-gradient(90deg, rgb(253, 255, 0), rgb(253, 255, 0));
+    color: rgb(12, 12, 12);
+    font-family: Comfortaa;
+    font-size: 24px;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 100px;
+    transition: 150ms transform;
+    box-shadow: 0 8px 25px 0 rgba(152, 153, 0, 0.79);
+}
+
+.button-best:hover {
+    transform: scale(1.025);
+}
+
+.flare {
+    background: rgba(255, 255, 255, 0.4) linear-gradient(90deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.15) 100%);
+    background-origin: content-box;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: skewX(-45deg) translateX(-150%);
+    animation: css_moving 3s ease-in-out infinite;
+}
+
+@keyframes css_moving {
+    30%, 100% {
+        left: 100%;
+        transform: skewX(-45deg) translateX(50%);
+    }
+}
+
+.selected-service {
+    background-color: #fafafa;
+    color: #333;
+}
+
+.form-control#serviceSelect {
+    background-color: #fff;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-weight: 500;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.table th {
+    background-color: #e9ecef;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.table tr:nth-child(even) {
+    background-color: #e9f2f9;
+}
+
+.table tr:hover {
+    background-color: #cde2f7;
+    cursor: pointer;
+}
