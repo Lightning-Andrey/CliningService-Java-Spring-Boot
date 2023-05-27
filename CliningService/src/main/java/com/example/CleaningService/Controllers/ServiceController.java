@@ -36,21 +36,20 @@ public class ServiceController {
         return "redirect:/table-services";
     }
 
-    @GetMapping("/editService/{id}")
+    @GetMapping("/edit-service/{id}")
     public String showEditServiceForm(@PathVariable("id") long id, Model model) {
         Service service = serviceRepository.findById((int) id).orElseThrow(() -> new IllegalArgumentException("Invalid service Id:" + id));
         model.addAttribute("service", service);
         return "edit-service";
     }
 
-    @PostMapping("/editService")
+    @PostMapping("/edit-service")
     public String updateService(@ModelAttribute Service service) {
         serviceRepository.save(service);
         return "redirect:/table-services";
     }
 
-
-    @GetMapping("/deleteService/{id}")
+    @GetMapping("/delete-service/{id}")
     public String deleteService(@PathVariable("id") long id, Model model) {
         Service service = serviceRepository.findById((int) id).orElseThrow(() -> new IllegalArgumentException("Invalid service Id:" + id));
         serviceRepository.delete(service);
