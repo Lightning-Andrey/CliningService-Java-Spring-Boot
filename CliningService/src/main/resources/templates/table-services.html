@@ -35,6 +35,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>№</th>
                     <th>Название</th>
                     <th>Описание</th>
                     <th>Цена</th>
@@ -43,7 +44,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="service : ${services}">
+                <tr th:each="service, iterStat : ${services}">
+                    <td th:text="${iterStat.count}"></td>
                     <td th:text="${service.name}"></td>
                     <td th:text="${service.description}"></td>
                     <td th:text="${service.price}"></td>

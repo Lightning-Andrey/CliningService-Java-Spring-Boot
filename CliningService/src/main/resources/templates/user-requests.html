@@ -11,19 +11,10 @@
         <div class="col-sm-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="/table-requests">Заявки</a>
+                    <a class="nav-link" href="/request-cleaning">Оставить заявку</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/table-services">Услуги</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/table-users">Пользователи</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/table-inventory">Персонал</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/table-employees">Инвентарь</a>
+                    <a class="nav-link active" href="/user-requests">Мои предыдущие заявки</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Выйти</a>
@@ -35,6 +26,7 @@
             <table class="table table-striped responsive-table">
                 <thead>
                 <tr>
+                    <th scope="col">№</th>
                     <th scope="col">Услуга</th>
                     <th scope="col">Описание</th>
                     <th scope="col">Цена</th>
@@ -44,7 +36,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="request : ${requests}">
+                <tr th:each="request, iterStat : ${requests}">
+                    <td th:text="${iterStat.count}"></td>
                     <td th:text="${request.service.name}"></td>
                     <td th:text="${request.service.description}"></td>
                     <td th:text="${request.service.price}"></td>
@@ -71,11 +64,21 @@
                             </button>
                         </form>
                     </td>
+                    <td>
+                        <i class="fas fa-pencil-alt" onclick="showAlert()"></i>
+                        <i class="fas fa-times" onclick="showAlert()"></i>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    function showAlert() {
+        alert("Обратитесь к менеджеру по номеру телефона: +375(xx)xxx-xx-xx");
+    }
+</script>
 </body>
 </html>

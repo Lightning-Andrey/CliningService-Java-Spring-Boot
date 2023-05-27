@@ -26,6 +26,8 @@ public class CleaningController {
     private ServiceRepository serviceRepository;
     @Autowired
     private CleaningRequestRepository cleaningRequestRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @GetMapping("/request-cleaning")
     public String showRequestCleaningForm(@RequestParam(value = "serviceId", required = false) Integer serviceId, Model model) {
@@ -59,13 +61,14 @@ public class CleaningController {
         request.setDateTime(dateTime);
         request.setUser(sessionUser);
         request.setStatus("Принят");
+        request.setComments(null);
+        request.setEmployee(null);
+        request.setInventory(null);
         cleaningRequestRepository.save(request);
 
         return "redirect:/user-requests";
     }
 
-    @Autowired
-    private CommentRepository commentRepository;
 
     @GetMapping("/user-requests")
     public String showPreviousRequests(Model model, HttpSession session) {
@@ -85,26 +88,6 @@ public class CleaningController {
 
             return "user-requests";
         }
-    }
-
-    @PostMapping("/add-comment")
-    public String addComment(@RequestParam("requestId") int requestId,
-                             @RequestParam("content") String content,
-                             @ModelAttribute("user") User user) {
-
-        CleaningRequest request = cleaningRequestRepository.findById((long) requestId).orElse(null);
-        if (request == null) {
-            return "redirect:/user-requests";
-        }
-
-        Comment comment = new Comment();
-        comment.setContent(content);
-        comment.setDateTime(LocalDateTime.now());
-        comment.setUser(user);
-        comment.setCleaningRequest(request);
-        commentRepository.save(comment);
-
-        return "redirect:/user-requests";
     }
 
 }

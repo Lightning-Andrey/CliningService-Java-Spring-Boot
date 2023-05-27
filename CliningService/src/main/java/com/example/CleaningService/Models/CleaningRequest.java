@@ -11,27 +11,29 @@ public class CleaningRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "service_id")
+    private Service service;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     @Column(name = "dateTime")
     private String dateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "service_id")
-    private Service service;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
     @OneToMany(mappedBy = "cleaningRequest")
     private List<Comment> comments;
     @Column(name = "status")
     private String status;
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
-    @ManyToOne
-    @JoinColumn(name = "inventory_id")
-    private Inventory inventory;
 
     public Employee getEmployee() {
         return employee;

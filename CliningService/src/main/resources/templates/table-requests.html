@@ -35,42 +35,28 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Пользователь</th>
+                    <th>№</th>
+                    <th>Дата</th>
                     <th>Услуга</th>
-                    <th>Дата и время</th>
+                    <th>Пользователь</th>
                     <th>Статус</th>
                     <th>Работник</th>
                     <th>Инвентарь</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="request : ${requests}">
-                    <td th:text="${request.user.name}"></td>
-                    <td th:text="${request.service.name}"></td>
+                <tr th:each="request, iterStat : ${requests}">
+                    <td th:text="${iterStat.count}"></td>
                     <td th:text="${request.dateTime}"></td>
+                    <td th:text="${request.service != null ? request.service.name : ''}"></td>
+                    <td th:text="${request.user.name}"></td>
+                    <td th:text="${request.status}"></td>
+                    <td th:text="${request.employee.name}"></td>
+                    <td th:text="${request.inventory.name}"></td>
                     <td>
-                        <select name="status" id="status" th:field="*{request.status}">
-                            <option value="В обработке">В обработке</option>
-                            <option value="Выполняется">Выполняется</option>
-                            <option value="Исполнен">Исполнен</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select name="employee" id="employee" th:field="*{request.employee}">
-                            <option th:each="employee : ${employees}" th:value="${employee.id}"
-                                    th:text="${employee.name}"></option>
-                        </select>
-                    </td>
-                    <td>
-                        <select name="inventory" id="inventory" th:field="*{request.inventory}">
-                            <option th:each="inventory : ${inventories}" th:value="${inventory.id}"
-                                    th:text="${inventory.name}"></option>
-                        </select>
-                    </td>
-                    <td>
-                        <a th:href="@{/editRequest/(id=${request.id})}" class="btn btn-primary">Сохранить изменения</a>
-                        <a th:href="@{/deleteRequest/(id=${request.id})}" class="btn btn-danger">Удалить</a>
+                        <a th:href="@{/edit-request/{id}(id=${request.id})}" class="btn btn-primary">Редактировать</a>
                     </td>
                 </tr>
                 </tbody>

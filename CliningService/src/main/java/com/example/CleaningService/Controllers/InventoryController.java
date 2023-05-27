@@ -1,6 +1,5 @@
 package com.example.CleaningService.Controllers;
 
-import com.example.CleaningService.Models.Employee;
 import com.example.CleaningService.Models.Inventory;
 import com.example.CleaningService.Repositories.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

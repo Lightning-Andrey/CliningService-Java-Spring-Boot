@@ -35,6 +35,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>№</th>
                     <th>Название</th>
                     <th>Количество</th>
                     <th></th>
@@ -42,7 +43,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="inventory : ${inventories}">
+                <tr th:each="inventory, iterStat : ${inventories}">
+                    <td th:text="${iterStat.count}"></td>
                     <td th:text="${inventory.name}"></td>
                     <td th:text="${inventory.quantity}"></td>
                     <td>

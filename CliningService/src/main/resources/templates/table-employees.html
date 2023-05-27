@@ -35,13 +35,15 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>№</th>
                     <th>Имя</th>
                     <th></th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="employee : ${employees}">
+                <tr th:each="employee, iterStat : ${employees}">
+                    <td th:text="${iterStat.count}"></td>
                     <td th:text="${employee.name}"></td>
                     <td>
                         <a th:href="@{/edit-employee/(id=${employee.id})}" class="btn btn-primary">Редактировать</a>
