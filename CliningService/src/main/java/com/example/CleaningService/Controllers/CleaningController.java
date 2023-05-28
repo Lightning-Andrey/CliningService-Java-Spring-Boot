@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +59,7 @@ public class CleaningController {
         request.setService(service);
         request.setDateTime(dateTime);
         request.setUser(sessionUser);
-        request.setStatus("Принят");
+        request.setStatus("В обработке");
         request.setComments(null);
         request.setEmployee(null);
         request.setInventory(null);
@@ -76,7 +75,7 @@ public class CleaningController {
         if (user == null) {
             return "redirect:/login";
         } else {
-            List<CleaningRequest> userRequests = cleaningRequestRepository.findByUser(user);
+            List<CleaningRequest> userRequests = cleaningRequestRepository.findByUserAndStatusNot(user, "Завершён");
             model.addAttribute("requests", userRequests);
 
             Map<CleaningRequest, List<Comment>> commentsForRequests = new HashMap<>();
@@ -87,6 +86,26 @@ public class CleaningController {
             model.addAttribute("commentsForRequests", commentsForRequests);
 
             return "user-requests";
+        }
+    }
+
+    @GetMapping("/user-archive")
+    public String showArchivedRequests(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        } else {
+            List<CleaningRequest> userRequests = cleaningRequestRepository.findByUserAndStatus(user, "Завершён");
+            model.addAttribute("requests", userRequests);
+
+            Map<CleaningRequest, List<Comment>> commentsForRequests = new HashMap<>();
+            for (CleaningRequest request : userRequests) {
+                List<Comment> comments = commentRepository.findByCleaningRequest(request);
+                commentsForRequests.put(request, comments);
+            }
+            model.addAttribute("commentsForRequests", commentsForRequests);
+
+            return "user-archive";
         }
     }
 

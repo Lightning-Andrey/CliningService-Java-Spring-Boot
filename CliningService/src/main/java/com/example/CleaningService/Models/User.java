@@ -24,6 +24,27 @@ public class User {
     protected String role;
     @OneToMany(mappedBy = "user")
     private List<CleaningRequest> cleaningRequests;
+    @Column(name = "phone_number")
+    protected String phoneNumber;
+
+    @Column(name = "avatar_url")
+    protected String avatarUrl;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public List<CleaningRequest> getCleaningRequests() {
         return cleaningRequests;
