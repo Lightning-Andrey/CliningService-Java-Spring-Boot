@@ -32,7 +32,7 @@
             <form th:action="@{/update-profile}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Текущий аватар</label>
-                    <img th:src="@{'/' + ${user.avatarUrl}}" alt="User Avatar" width="200" height="200"/>
+                    <img th:src="@{'/' + ${user.avatarUrl}}" alt="User Avatar" width="100" height="100"/>
                 </div>
                 <div class="form-group">
                     <label>Имя пользователя</label>

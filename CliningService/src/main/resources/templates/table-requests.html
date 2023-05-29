@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="request, iterStat : ${requests}">
-                    <td th:text="${iterStat.count}"></td>
+                    <td th:text="${iterStat.count + 'руб.'}"></td>
                     <td th:text="${request.dateTime}"></td>
                     <td th:text="${request.service != null ? request.service.name : ''}"></td>
                     <td th:text="${request.user.name}"></td>

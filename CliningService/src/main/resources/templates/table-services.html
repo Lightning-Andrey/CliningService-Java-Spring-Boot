@@ -48,7 +48,7 @@
                     <td th:text="${iterStat.count}"></td>
                     <td th:text="${service.name}"></td>
                     <td th:text="${service.description}"></td>
-                    <td th:text="${service.price}"></td>
+                    <td th:text="${service.price + 'руб.'}"></td>
                     <td>
                         <a th:href="@{/edit-service/{id}(id=${service.id})}" class="btn btn-primary">Редактировать</a>
                     </td>

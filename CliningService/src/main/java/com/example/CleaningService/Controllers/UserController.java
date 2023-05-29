@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -38,5 +40,46 @@ public class UserController {
         }
         return "redirect:/profile";
     }
+
+    @GetMapping("/table-users")
+    public String getUsers(Model model, @RequestParam(required = false) Long userId) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+
+        if (userId != null) {
+            User selectedUser = userService.getUserById(userId);
+            model.addAttribute("selectedUser", selectedUser);
+        }
+
+        return "table-users";
+    }
+
+
+    @GetMapping("/add-admin")
+    public String showAddAdminForm(Model model) {
+        User user = new User();
+        user.setRole("admin");
+        model.addAttribute("user", user);
+        return "add-admin";
+    }
+
+    @PostMapping("/addAdmin")
+    public String addAdmin(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/table-users";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userId") Long userId, HttpSession session) {
+        User currentUser = (User) session.getAttribute("loggedInUser");
+
+        if (currentUser != null && currentUser.getId() != userId) {
+            userService.deleteUserById(userId);
+        }
+
+        return "redirect:/table-users";
+    }
+
+
 }
 

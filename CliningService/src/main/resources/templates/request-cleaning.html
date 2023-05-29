@@ -45,7 +45,7 @@
                     <label for="serviceDescription">Описание услуги:</label>
                     <p th:text="${selectedService.description}"></p>
                     <label for="servicePrice">Цена:</label>
-                    <p th:text="${selectedService.price}"></p>
+                    <p th:text="${selectedService.price+'руб.'}"></p>
                 </div>
             </form>
             <form action="/submitRequest" method="post" th:if="${selectedService != null}">
