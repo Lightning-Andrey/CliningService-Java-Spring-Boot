@@ -48,17 +48,45 @@
                 </thead>
                 <tbody>
                 <tr th:each="request, iterStat : ${requests}">
-                    <td th:text="${iterStat.count + 'руб.'}"></td>
+                    <td th:text="${iterStat.count}"></td>
                     <td th:text="${request.dateTime}"></td>
                     <td th:text="${request.service != null ? request.service.name : ''}"></td>
                     <td th:text="${request.user.name}"></td>
-                    <td th:text="${request.status}"></td>
-                    <td th:text="${request.employee.name}"></td>
-                    <td th:text="${request.inventory.name}"></td>
+                    <form action="/editRequest" method="post">
+                        <td>
+                            <select class="form-control" name="status">
+                                <option th:each="status : ${statusList}"
+                                        th:selected="${status.equals(request.status)}"
+                                        th:text="${status}"
+                                        th:value="${status}"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="employee">
+                                <option th:each="employee : ${employees}"
+                                        th:selected="${employee.id.equals(request.employee.id)}"
+                                        th:text="${employee.name}"
+                                        th:value="${employee.id}"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="inventory">
+                                <option th:each="inventory : ${inventories}"
+                                        th:selected="${inventory.id.equals(request.inventory.id)}"
+                                        th:text="${inventory.name}"
+                                        th:value="${inventory.id}"></option>
+                            </select>
+                        </td>
+                        <input type="hidden" name="requestId" th:value="${request.id}">
+                        <td>
+                            <button type="submit" class="btn btn-primary">Обновить</button>
+                        </td>
+                    </form>
                     <td>
                         <a th:href="@{/edit-request/{id}(id=${request.id})}" class="btn btn-primary">Редактировать</a>
                     </td>
                 </tr>
+
                 </tbody>
             </table>
         </div>
