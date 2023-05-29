@@ -18,11 +18,11 @@ public class Comment {
     @Column(name = "dateTime")
     private LocalDateTime dateTime;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "cleaning_request_id")
     private CleaningRequest cleaningRequest;
 

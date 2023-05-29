@@ -42,6 +42,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="request, iterStat : ${requests}">
+
                     <td th:text="${iterStat.count}"></td>
                     <td th:text="${request.service.name}"></td>
                     <td th:text="${request.service.description}"></td>
@@ -70,7 +71,7 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script>
     function showAlert() {
-        alert("Обратитесь к менеджеру по номеру телефона: +375(xx)xxx-xx-xx");
+        alert("По всем важным и не очень вопросам обращаться к Даниилу Романовичу по телефону +375 44 757 05 56");
     }
 </script>
 </body>
