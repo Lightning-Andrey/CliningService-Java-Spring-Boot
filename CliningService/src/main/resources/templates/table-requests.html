@@ -4,6 +4,11 @@
     <title>Список заявок</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -32,63 +37,71 @@
         </div>
         <div class="col-sm-9">
             <h1>Список заявок</h1>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>№</th>
-                    <th>Дата</th>
-                    <th>Услуга</th>
-                    <th>Пользователь</th>
-                    <th>Статус</th>
-                    <th>Работники</th>
-                    <th>Инвентарь</th>
-                    <th></th>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Дата</th>
+                        <th>Услуга</th>
+                        <th>Пользователь</th>
+                        <th>Статус</th>
+                        <th>Работники</th>
+                        <th>Инвентарь</th>
+                        <th></th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="request, iterStat : ${requests}">
-                    <td th:text="${iterStat.count}"></td>
-                    <td th:text="${request.dateTime}"></td>
-                    <td th:text="${request.service != null ? request.service.name : ''}"></td>
-                    <td th:text="${request.user.name}"></td>
-                    <form action="/editRequest" method="post">
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="request, iterStat : ${requests}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td th:text="${request.dateTime}"></td>
+                        <td th:text="${request.service != null ? request.service.name : ''}"></td>
+                        <td th:text="${request.user.name}"></td>
+                        <form action="/editRequest" method="post">
+                            <td>
+                                <select class="form-control" name="status">
+                                    <option th:each="status : ${statusList}"
+                                            th:selected="${status.equals(request.status)}"
+                                            th:text="${status}"
+                                            th:value="${status}"></option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="employee">
+                                    <option th:each="employee : ${employees}"
+                                            th:selected="${request.employee != null && employee.id.equals(request.employee.id)}"
+                                            th:text="${employee.name}"
+                                            th:value="${employee.id}"></option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="inventory">
+                                    <option th:each="inventory : ${inventories}"
+                                            th:selected="${request.inventory != null && inventory.id.equals(request.inventory.id)}"
+                                            th:text="${inventory.name}"
+                                            th:value="${inventory.id}"></option>
+                                </select>
+                            </td>
+                            <input type="hidden" name="requestId" th:value="${request.id}">
+                            <td>
+                                <button type="submit" class="btn btn-primary">Обновить</button>
+                            </td>
+                        </form>
                         <td>
-                            <select class="form-control" name="status">
-                                <option th:each="status : ${statusList}"
-                                        th:selected="${status.equals(request.status)}"
-                                        th:text="${status}"
-                                        th:value="${status}"></option>
-                            </select>
+                            <a th:href="@{/edit-request/{id}(id=${request.id})}"
+                               class="btn btn-primary">Редактировать</a>
                         </td>
                         <td>
-                            <select class="form-control" name="employee">
-                                <option th:each="employee : ${employees}"
-                                        th:selected="${employee.id.equals(request.employee.id)}"
-                                        th:text="${employee.name}"
-                                        th:value="${employee.id}"></option>
-                            </select>
+                            <form th:action="@{/delete-request/{id}(id=${request.id})}" method="post">
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
                         </td>
-                        <td>
-                            <select class="form-control" name="inventory">
-                                <option th:each="inventory : ${inventories}"
-                                        th:selected="${inventory.id.equals(request.inventory.id)}"
-                                        th:text="${inventory.name}"
-                                        th:value="${inventory.id}"></option>
-                            </select>
-                        </td>
-                        <input type="hidden" name="requestId" th:value="${request.id}">
-                        <td>
-                            <button type="submit" class="btn btn-primary">Обновить</button>
-                        </td>
-                    </form>
-                    <td>
-                        <a th:href="@{/edit-request/{id}(id=${request.id})}" class="btn btn-primary">Редактировать</a>
-                    </td>
-                </tr>
+                    </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

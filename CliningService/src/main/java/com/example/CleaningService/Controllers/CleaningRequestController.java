@@ -5,6 +5,7 @@ import com.example.CleaningService.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -53,11 +54,32 @@ public class CleaningRequestController {
 
         return "edit-request";
     }
+    @PostMapping("/edit-request/{id}")
+    public String updateRequest(@PathVariable("id") long id, @ModelAttribute("request") CleaningRequest request,
+                                BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "edit-request";
+        }
 
-    @GetMapping("/delete-request/{id}")
-    public String deleteRequest(@PathVariable("id") long id) {
-        CleaningRequest request = cleaningRequestRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid request Id:" + id));
-        cleaningRequestRepository.delete(request);
+        CleaningRequest existingRequest = cleaningRequestRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid request Id:" + id));
+
+        existingRequest.setDateTime(request.getDateTime());
+        existingRequest.setStatus(request.getStatus());
+        existingRequest.setEmployee(request.getEmployee());
+        existingRequest.setInventory(request.getInventory());
+
+        cleaningRequestRepository.save(existingRequest);
+
         return "redirect:/table-requests";
     }
+
+    @PostMapping("/delete-request/{id}")
+    public String deleteRequest(@PathVariable("id") long id) {
+        CleaningRequest existingRequest = cleaningRequestRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid request Id:" + id));
+        cleaningRequestRepository.delete(existingRequest);
+        return "redirect:/table-requests";
+    }
+
 }
